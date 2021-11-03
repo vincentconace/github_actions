@@ -1,14 +1,13 @@
 name: First workflow
 
-on: [push, pull_request]
+on: [push]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
-
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v1
 
       - name: Hello Codelies!
         run: echo "Hello!!!! from ${{ github.workflow }} triggered by the ${{ github.event_name }} done by ${{ github.actor }}"
@@ -19,10 +18,3 @@ jobs:
         run: |
           echo "Job Context: $JOB_CONTEXT"
           echo "Done!"
-      - name: Install dependencies
-        working-directory: ./lessons/03-Continious_Integration/03.1-Executing_tests
-        run: composer install --ignore-platform-reqs
-
-      - name: Run the tests
-        working-directory: ./lessons/03-Continious_Integration/03.1-Executing_tests
-        run: composer phpunit
